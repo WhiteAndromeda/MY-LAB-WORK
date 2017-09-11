@@ -12,7 +12,7 @@ int main()
 
     switch(scale)
     {
-        case "C"
+        case "C" 
         printf("%.2f",temperature);
         printf(temperature" C:\n");
         printf(temperature" F\n");
