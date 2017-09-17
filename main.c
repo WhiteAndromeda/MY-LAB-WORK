@@ -3,28 +3,54 @@
 
 int main()
 {
-    double temperature;
+    double t = 5;
     char scale;
     #define T0 273.15
+    scale = 'K';
 
     printf("$ tconvert ");
-    scanf(temperature, scale);
-
+    scanf("%.2f%c", &t, &scale);
     switch(scale)
     {
-        case "C" 
-        printf("%.2f",temperature);
-        printf(temperature" C:\n");
-        printf(temperature" F\n");
-        printf(temperature" K\n\n");
+        case 'C' :
+        {
+        	printf("%.2f C\n", t);
+        	printf("%.2f F\n", t);
+        	printf("%.2f K", t);
+            break;
+		}
+		case 'F' :
+		{
+        	printf("%.2f F\n", t);
+        	printf("%.2f C\n", t);
+        	printf("%.2f K", t);
+        	break;
+		}
+		case 'K' :
+		{
+        	printf("%.2f K\n", t);
+        	printf("%.2f C\n", t);
+        	printf("%.2f F", t);
+        	break;
+        }
+        default :
+        {
+        	printf("%.2f\n",t);
 
-        printf(temperature" F:\n");
-        printf(temperature" C\n");
-        printf(temperature" K\n\n");
+        	printf("%.2f C:\n",t);
+        	printf("%.2f F\n",t);
+        	printf("%.2f K\n\n",t);
 
-        printf(temperature" K:\n");
-        printf(temperature" C\n");
-        printf(temperature" F:\n");
+        	printf("%.2f F:\n",t);
+        	printf("%.2f C\n",t);
+        	printf("%.2f K\n\n",t);
+
+        	printf("%.2f K:\n",t);
+        	printf("%.2f C\n",t);
+        	printf("%.2f F",t);
+        	break;
+		}
+
     }
 
     return 0;
