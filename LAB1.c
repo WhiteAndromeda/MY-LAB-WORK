@@ -20,7 +20,7 @@ int main(int argc, char *argv[])    //counting the number of variables
         if (argc > 2)
         {
             t = atof(argv[1]);
-            scale = toupper(atof(argv[2]));
+            printf("%s ",argv[2]);
         }
         else
             t = atof(argv[1]);
@@ -105,7 +105,6 @@ int main(int argc, char *argv[])    //counting the number of variables
         	    printf("%.2f K:\n", t);
         	    printf("%.2f C\n", (t-K0));
         	    printf("%.2f F", (t*9/5-K1));
-                break;
             }
 		}
 
