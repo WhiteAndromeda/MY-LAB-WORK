@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 #define K0 273.15
 #define K1 459.67
 
@@ -9,23 +9,34 @@ char scale;    //temperature scales
 
 int main(int argc, char *argv[])    //counting the number of variables
 {
-    if (argc < 2)
+    switch(argc)
     {
-        printf("No input data");
-        exit(0);
-    }
-    else
-    {
-        printf("$ tconvert ");
-        if (argc > 2)
+        case 1 :
         {
-            t = atof(argv[1]);
-            printf("%s ",argv[2]);
+            printf("No input data");
+            exit(0);
         }
-        else
+        case 2 :
             t = atof(argv[1]);
+            break;
+        case 3 :
+        {   
+            if (strcmp("C", argv[2])== 0)
+                scale = 'C';
+            else
+                if(strcmp("F", argv[2])== 0)
+                    scale = 'F';
+                else
+                    if(strcmp("K", argv[2])== 0)
+                        scale = 'K';
+            t = atof(argv[1]);
+            break;
+        default:
+            ;
+        }
     }
-    
+
+    printf("$ tconvert ");
 
     switch(scale)
     {
@@ -40,7 +51,7 @@ int main(int argc, char *argv[])    //counting the number of variables
             {
                 printf("%.2f C\n", t);
                 printf("%.2f F\n", (t*9/5+32));
-        	    printf("%.2f K", (t+K0));
+        	    printf("%.2f K\n", (t+K0));
                 break;
             }
 		}
@@ -55,7 +66,7 @@ int main(int argc, char *argv[])    //counting the number of variables
             {
         	    printf("%.2f F\n", t);
         	    printf("%.2f C\n", ((t-32)*5/9));
-        	    printf("%.2f K", ((t+K1)*5/9));
+        	    printf("%.2f K\n", ((t+K1)*5/9));
                 break;
             }
 		}
@@ -70,7 +81,7 @@ int main(int argc, char *argv[])    //counting the number of variables
             {
         	    printf("%.2f K\n", t);
         	    printf("%.2f C\n", (t-K0));
-                printf("%.2f F", (t*9/5-K1));
+                printf("%.2f F\n", (t*9/5-K1));
                 break;
             }
         }
@@ -104,7 +115,7 @@ int main(int argc, char *argv[])    //counting the number of variables
             {
         	    printf("%.2f K:\n", t);
         	    printf("%.2f C\n", (t-K0));
-        	    printf("%.2f F", (t*9/5-K1));
+        	    printf("%.2f F\n", (t*9/5-K1));
             }
 		}
 
