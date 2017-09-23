@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-short int Flag = 0;
+char Flag = 1, FlagA = 0;
 float temperature;
-char *scales[]={"K", "C", "F"};
-float min[]={0.0, 273.15, 459.67};
+char *scales[]={"C", "F", "K"};
+float min[]={273.15, 459.67, 0.0};
 
 float * converter(float t, int num)
 {
@@ -16,28 +16,32 @@ float * converter(float t, int num)
         return NULL;
     }
     else
-        if (Flag == 0)
+        if (Flag == 1)
         {
-            Flag = 1;
-            printf("\n$ tconvert ");
+            Flag = 0;
+            if (FlagA == 0)
+                printf("\n$ tconvert ");
+            else
+                printf("\n$ tconvert %.2f\n", t);
         }
 
     switch(num)
     {
-        case 0: 
-            printf("%.2f K:\n", t);
-            printf("%.2f C\n", (t - min[1]));
-            printf("%.2f F\n\n", (t * 9.0 / 5.0 - min[2]));
-            break;
-        case 1: 
+        case 0:
             printf("%.2f C:\n", t);
             printf("%.2f F\n", (t * 9.0 / 5.0 + 32.0));
-            printf("%.2f K\n\n", (t + min[1]));
-            break;
-        case 2:
+            printf("%.2f K\n\n", (t + min[0]));
+            break; 
+        case 1: 
             printf("%.2f F:\n", t);
             printf("%.2f C\n", ((t - 32.0) * 5.0 / 9.0));
-            printf("%.2f K\n", ((t + min[2])* 5.0 / 9.0));
+            printf("%.2f K\n\n", ((t + min[1])* 5.0 / 9.0));
+            break;
+        case 2:
+            
+            printf("%.2f K:\n", t);
+            printf("%.2f C\n", (t - min[0]));
+            printf("%.2f F\n", (t * 9.0 / 5.0 - min[1]));
             break;
     }
 }
@@ -53,6 +57,7 @@ int main(int argc, char *argv[])
         }
         case 2:
         {
+            FlagA = 1;
             temperature = atof(argv[1]);
             for (int i = 0; i <= 2; ++i)
                 converter(temperature, i);
@@ -67,6 +72,7 @@ int main(int argc, char *argv[])
                     converter(temperature, i);
                     return 0;
                 }
+            FlagA = 1;
             for (int i = 0; i <= 2; ++i)
                 converter(temperature, i);
             break;
