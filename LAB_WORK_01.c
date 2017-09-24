@@ -1,4 +1,4 @@
-//pikbo_01_17_0943_1
+/*pikbo_01_17_0943_1*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +13,7 @@ float * converter(float t, int num)
     if (t < -min[num])
     {
         printf("\n%.2f %s:\nThis temperature does not exist\n", t, scales[num]);
-        return NULL;
+        return 0;
     }
     else
         if (Flag == 1)
@@ -46,7 +46,7 @@ float * converter(float t, int num)
     }
 }
 
-int main(int argc, char *argv[])  
+int main(int argc, char *argv[])
 {
     switch(argc)
     {
@@ -59,22 +59,34 @@ int main(int argc, char *argv[])
         {
             FlagA = 1;
             temperature = atof(argv[1]);
-            for (int i = 0; i <= 2; ++i)
+            int i = 0;
+            while (i <= 2)
+            {
                 converter(temperature, i);
+                ++i;
+            }
             break;
         }
         case 3:
         {   
             temperature = atof(argv[1]);
-            for (int i = 0; i <= 2; ++i)
-                if (stricmp(scales[i], argv[2]) == 0)
+            int i = 0;
+            while (i <= 2)
+            {
+                if (strcmp(scales[i], argv[2]) == 0)
                 {
                     converter(temperature, i);
                     return 0;
                 }
+                ++i;
+            }
             FlagA = 1;
-            for (int i = 0; i <= 2; ++i)
+            i = 0;
+            while (i <= 2)
+            {
                 converter(temperature, i);
+                ++i;
+            }
             break;
         }
     }
