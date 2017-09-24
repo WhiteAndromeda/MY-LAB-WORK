@@ -13,7 +13,7 @@ float * converter(float t, int num)
     if (t < -min[num])
     {
         printf("\n%.2f %s:\nThis temperature does not exist\n", t, scales[num]);
-        return 0;
+        return NULL;
     }
     else
         if (Flag == 1)
@@ -44,6 +44,7 @@ float * converter(float t, int num)
             printf("%.2f F\n", (t * 9.0 / 5.0 - min[1]));
             break;
     }
+    return 0;
 }
 
 int main(int argc, char *argv[])
